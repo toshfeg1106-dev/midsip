@@ -1,54 +1,53 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
-/**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
- */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "Mid-Sip",
+    pageTitleSuffix: " — Mid-Sip",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
+    analytics: null,
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    baseUrl: "midsip.org",
+    ignorePatterns: [
+      "private",
+      "templates",
+      "Brand-OS.md",
+      ".obsidian",
+      "Work/**",
+    ],
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Playfair Display",
+        body: "Inter",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#F5F0E8",       // Parchment — page background
+          lightgray: "#E8D5B0",   // Dried herb — borders
+          gray: "#C4A882",        // Clay — secondary text
+          darkgray: "#4A5240",    // Forest — body text
+          dark: "#2C2C24",        // Ink — headings
+          secondary: "#7A8C6E",   // Sage — links
+          tertiary: "#C4A882",    // Clay — hover
+          highlight: "rgba(122, 140, 110, 0.12)",
+          textHighlight: "#E8D5B088",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1C1C18",       // Deep ink background
+          lightgray: "#2C2C24",   // Ink — borders
+          gray: "#4A5240",        // Forest — secondary
+          darkgray: "#C4A882",    // Clay — body text
+          dark: "#F5F0E8",        // Parchment — headings
+          secondary: "#7A8C6E",   // Sage — links
+          tertiary: "#C4A882",    // Clay — hover
+          highlight: "rgba(122, 140, 110, 0.15)",
+          textHighlight: "#7A8C6E44",
         },
       },
     },
@@ -57,7 +56,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"],
+        priority: ["frontmatter", "filesystem"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {
@@ -86,10 +85,7 @@ const config: QuartzConfig = {
       }),
       Plugin.Assets(),
       Plugin.Static(),
-      Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
     ],
   },
 }
